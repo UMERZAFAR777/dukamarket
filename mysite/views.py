@@ -3,10 +3,14 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-
+from slider.models import Slider
 
 def home(request):
-    return render (request,'index.html')
+    slider = Slider.objects.all()
+    data = {
+        'slider':slider
+    }
+    return render (request,'index.html',data)
 
 def account(request):
     if request.method == "POST":
